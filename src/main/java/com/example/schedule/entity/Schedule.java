@@ -3,7 +3,9 @@ package com.example.schedule.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
+@Setter
 @Getter
 @Entity
 @Table(name = "schedule")
@@ -31,10 +33,10 @@ public class Schedule extends BaseEntity {
         this.contents = contents;
     }
 
-    //업데이트 용으로
-    public void setSchedule(String title, String contents){
-     this.title = title;
-     this.contents = contents;
-
-    }
+//    //업데이트 용으로
+//    public void setSchedule(String title, String contents){
+//     this.title = title;
+//     this.contents = contents;
+//
+//    }
 }
