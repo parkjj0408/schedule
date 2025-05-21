@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 
 public class GetScheduleResponseDto {
-    //게시물 조회
+    //식별자로 게시물 조회dto
     private final Long id;
     private final String username;
     private final String title;

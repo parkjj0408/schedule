@@ -5,6 +5,7 @@ import lombok.Getter;
 @Getter
 
 public class CreateResponseDto {
+    //게시물 생성 응답 dto
     //작성자명 , 제목, 내용, 생성일, 수정일
    // private final String title;
     private final Long id;

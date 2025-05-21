@@ -30,4 +30,11 @@ public class Schedule extends BaseEntity {
         this.title = title;
         this.contents = contents;
     }
+
+    //업데이트 용으로
+    public void setSchedule(String title, String contents){
+     this.title = title;
+     this.contents = contents;
+
+    }
 }

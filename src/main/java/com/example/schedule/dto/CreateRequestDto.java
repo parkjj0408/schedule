@@ -5,6 +5,7 @@ import lombok.Getter;
 
 @Getter
 public class CreateRequestDto {
+    //게시물 생성요청 dto
     //할 일 생성 할때 밑에 내용을 입력받음
     private final String username;
     private final String title;

@@ -3,10 +3,12 @@ package com.example.schedule.controller;
 import com.example.schedule.dto.CreateRequestDto;
 import com.example.schedule.dto.CreateResponseDto;
 import com.example.schedule.dto.GetScheduleResponseDto;
+import com.example.schedule.dto.UpdateScheduleRequestDto;
 import com.example.schedule.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +32,7 @@ public class ScheduleController {
      // 그값을 리턴
       return new ResponseEntity<>(createResponseDto,HttpStatus.OK);
   }
+
 //전체 조회 메서드
 //@GetMapping
 //public ResponseEntity<List<GetScheduleResponseDto>> findAll (){
@@ -37,10 +40,27 @@ public class ScheduleController {
 //    List<GetScheduleResponseDto> scheduleResponseDto = scheduleService.findAll();
 //    return new ResponseEntity<>(scheduleResponseDto,HttpStatus.OK);
 //}
+
+
 //단건 조회 메서드
     @GetMapping("/{id}")
     public ResponseEntity<GetScheduleResponseDto>findScheduleById(@PathVariable Long id){
       GetScheduleResponseDto getScheduleResponseDto=scheduleService.findScheduleById(id);
       return new ResponseEntity<>(getScheduleResponseDto,HttpStatus.OK);
+  }
+
+  @PatchMapping("/{id}")
+   public ResponseEntity<Void> updateScheduleById(
+           @PathVariable Long id,
+           @RequestBody   UpdateScheduleRequestDto updateScheduleRequestDto){
+           scheduleService.updateSchedule(id,updateScheduleRequestDto.getTitle(),
+              updateScheduleRequestDto.getContents());
+             return new ResponseEntity<>(HttpStatus.OK);
+  }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> deleteSchedule(@PathVariable Long id){
+    scheduleService.deleteSchedule(id);
+  return new ResponseEntity<>(HttpStatus.OK);
   }
 }
