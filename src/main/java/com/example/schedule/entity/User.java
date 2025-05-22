@@ -16,18 +16,26 @@ public class User extends BaseEntity {
     private Long userid;
 
     @Column(nullable = false)
-   private  String username;
+    private String username;
     @Column(nullable = false)
-   private  String email;
+    private String email;
 
-   //기본 생성자
-    public User(String username, String email){
+    @Column(nullable = false)
+    private String password;
+
+    //기본 생성자
+    public User() {
+    };
+
+
+    public User(String username, String email) {
         this.username = username;
         this.email = email;
-    }
-
-
-    public User() {
 
     }
+//로그인기능
+    public User(String password) {
+        this.password = password;
+    }
+
 }
