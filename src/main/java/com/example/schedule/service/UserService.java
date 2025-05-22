@@ -36,5 +36,10 @@ public class UserService {
         }
         return new UpdateUserEmailResponseDto(updateEmail.getUserid(),updateEmail.getUsername(),updateEmail.getEmail());
     }
+
+    public void deleteUser(Long userid) {
+        User findUser = userRepository.findByIdOrElseThrow(userid);
+        userRepository.delete(findUser);
+    }
 }
 
