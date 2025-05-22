@@ -1,7 +1,6 @@
 package com.example.schedule.controller;
 
 import com.example.schedule.UserDto.*;
-import com.example.schedule.dto.UpdateScheduleRequestDto;
 import com.example.schedule.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,28 +16,29 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public ResponseEntity<CreateUserResponseDto> createUser (@RequestBody CreateUserRequestDto createUserRequestDto){
-           CreateUserResponseDto userResponseDto = userService.saveUser(createUserRequestDto.getUsername(),createUserRequestDto.getEmail());
-          return new ResponseEntity<>(userResponseDto, HttpStatus.CREATED);
+    public ResponseEntity<CreateUserResponseDto> createUser(@RequestBody CreateUserRequestDto createUserRequestDto) {
+        CreateUserResponseDto userResponseDto = userService.saveUser(createUserRequestDto.getUsername(), createUserRequestDto.getEmail());
+        return new ResponseEntity<>(userResponseDto, HttpStatus.CREATED);
     }
 
     @GetMapping("/{userid}")
-    public ResponseEntity<GetUserResponseDto> findUserById(@PathVariable Long userid){
+    public ResponseEntity<GetUserResponseDto> findUserById(@PathVariable Long userid) {
         GetUserResponseDto getUserResponseDto = userService.findUserById(userid);
-        return new ResponseEntity<>(getUserResponseDto,HttpStatus.OK);
+        return new ResponseEntity<>(getUserResponseDto, HttpStatus.OK);
     }
 
     @PatchMapping("/{userid}")
     public ResponseEntity<UpdateUserEmailResponseDto> updateEmail(
             @PathVariable Long userid,
-            @RequestBody UpdateUserEmailRequestDto userEmailRequestDto){
-        UpdateUserEmailResponseDto updateUserEmailResponseDto = userService.updateEmail(userid,userEmailRequestDto);
-        return new ResponseEntity<>(updateUserEmailResponseDto,HttpStatus.OK);
+            @RequestBody UpdateUserEmailRequestDto userEmailRequestDto) {
+        UpdateUserEmailResponseDto updateUserEmailResponseDto = userService.updateEmail(userid, userEmailRequestDto);
+        return new ResponseEntity<>(updateUserEmailResponseDto, HttpStatus.OK);
     }
-@DeleteMapping("/{userid}")
-    public ResponseEntity<Void> deleteUser (@PathVariable Long userid){
+
+    @DeleteMapping("/{userid}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long userid) {
         userService.deleteUser(userid);
         return new ResponseEntity<>(HttpStatus.OK);
-}
+    }
 
 }
