@@ -2,9 +2,10 @@ package com.example.schedule.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 
-
+@Setter
 @Getter
 @Entity
 @Table(name = "user")
@@ -12,7 +13,7 @@ import lombok.Getter;
 public class User extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long userid;
 
     @Column(nullable = false)
    private  String username;

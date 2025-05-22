@@ -1,15 +1,13 @@
 package com.example.schedule.controller;
 
-import com.example.schedule.UserDto.CreateUserRequestDto;
-import com.example.schedule.UserDto.CreateUserResponseDto;
+import com.example.schedule.UserDto.*;
+import com.example.schedule.dto.UpdateScheduleRequestDto;
 import com.example.schedule.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users")
@@ -21,6 +19,22 @@ public class UserController {
     @PostMapping
     public ResponseEntity<CreateUserResponseDto> createUser (@RequestBody CreateUserRequestDto createUserRequestDto){
            CreateUserResponseDto userResponseDto = userService.saveUser(createUserRequestDto.getUsername(),createUserRequestDto.getEmail());
-          return new ResponseEntity<>(userResponseDto, HttpStatus.OK);
+          return new ResponseEntity<>(userResponseDto, HttpStatus.CREATED);
     }
+
+    @GetMapping("/{userid}")
+    public ResponseEntity<GetUserResponseDto> findUserById(@PathVariable Long userid){
+        GetUserResponseDto getUserResponseDto = userService.findUserById(userid);
+        return new ResponseEntity<>(getUserResponseDto,HttpStatus.OK);
+    }
+
+    @PatchMapping("/{userid}")
+    public ResponseEntity<UpdateUserEmailResponseDto> updateEmail(
+            @PathVariable Long userid,
+            @RequestBody UpdateUserEmailRequestDto userEmailRequestDto){
+        UpdateUserEmailResponseDto updateUserEmailResponseDto = userService.updateEmail(userid,userEmailRequestDto);
+        return new ResponseEntity<>(updateUserEmailResponseDto,HttpStatus.OK);
+    }
+
+
 }
