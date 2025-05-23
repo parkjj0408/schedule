@@ -16,9 +16,9 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public CreateUserResponseDto saveUser(String username, String email) {
+    public CreateUserResponseDto saveUser(String username,String password, String email) {
         //위에 매개변수로 user객체 만들기
-        User user = new User(username, email);
+        User user = new User(username, password, email);
         User save = userRepository.save(user);
         return new CreateUserResponseDto(save.getUserid(), save.getUsername(), save.getEmail());
     }

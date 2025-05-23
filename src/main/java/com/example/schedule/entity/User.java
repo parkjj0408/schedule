@@ -20,22 +20,23 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
+   @Column(nullable = false)
     private String password;
 
     //기본 생성자
     public User() {
     };
 
-
-    public User(String username, String email) {
+//비밀번호 추가해서 로그인(유저생성)
+    public User(String username, String password, String email) {
         this.username = username;
+        this.password = password;
         this.email = email;
 
     }
 //로그인기능
-    public User(String password) {
-        this.password = password;
-    }
+//    public User(String password) {
+//        this.password = password;
+//    }
 
 }
