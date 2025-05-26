@@ -70,3 +70,9 @@
 | POST | `/users`      | 로그인 기능     |
 
 ## 더 자세한 요청/응답 예시는 [Notion API 명세서](https://comet-honeydew-090.notion.site/1ff3a6e1469d80a5bab9d2f2c0b13b6d?v=1ff3a6e1469d816897ef000ce21ad13f&pvs=4)를 참고하세요.
+
+
+---
+## 📡 ERD
+
+![img.png](img.png)
