@@ -1,11 +1,10 @@
 package com.example.schedule.service;
 
-import com.example.schedule.UserDto.CreateUserResponseDto;
-import com.example.schedule.UserDto.GetUserResponseDto;
-import com.example.schedule.UserDto.UpdateUserEmailRequestDto;
-import com.example.schedule.UserDto.UpdateUserEmailResponseDto;
+import com.example.schedule.UserDto.*;
 import com.example.schedule.entity.User;
 import com.example.schedule.repository.UserRepository;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +15,7 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    //회원 생성
     public CreateUserResponseDto saveUser(String username,String password, String email) {
         //위에 매개변수로 user객체 만들기
         User user = new User(username, password, email);
@@ -45,5 +45,18 @@ public class UserService {
         User findUser = userRepository.findByIdOrElseThrow(userid);
         userRepository.delete(findUser);
     }
+
+    // 로그인
+//    public void login(UserLoginRequestDto loginRequestDto, HttpServletRequest request) {
+//        User user = userRepository.findByEmail(loginRequestDto.getEmail())
+//                .orElseThrow(() -> new IllegalArgumentException("이메일 또는 비밀번호가 일치하지 않습니다."));
+//
+//        if (!user.getPassword().equals( loginRequestDto.getPassword())) {
+//            throw new IllegalArgumentException("이메일 또는 비밀번호가 일지하지 않습니다.");
+//        }
+//
+//        HttpSession session = request.getSession();
+//        session.setAttribute("user", user);
+//    }
 }
 

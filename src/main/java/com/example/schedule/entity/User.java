@@ -34,9 +34,5 @@ public class User extends BaseEntity {
         this.email = email;
 
     }
-//로그인기능
-//    public User(String password) {
-//        this.password = password;
-//    }
 
 }
